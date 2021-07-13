@@ -94,11 +94,6 @@
 					"parameters": {
 						"key": 32
 					}
-				},
-				{
-					"id": "on-tap",
-					"objectClass": "Touch",
-					"sid": 297599722158228
 				}
 			],
 			"actions": [],
@@ -132,6 +127,46 @@
 				}
 			],
 			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-in-touch",
+					"objectClass": "Touch",
+					"sid": 599786552358340
+				}
+			],
+			"actions": [],
+			"sid": 896000751072477,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 946028669786907,
+							"parameters": {
+								"variable": "morreu"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-vector-y",
+							"objectClass": "jogador",
+							"sid": 581684076020177,
+							"behaviorType": "Platform",
+							"parameters": {
+								"vector-y": "-400"
+							}
+						}
+					],
+					"sid": 311286369677605
+				}
+			]
 		},
 		{
 			"eventType": "block",
