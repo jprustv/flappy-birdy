@@ -94,6 +94,11 @@
 					"parameters": {
 						"key": 32
 					}
+				},
+				{
+					"id": "on-tap",
+					"objectClass": "Touch",
+					"sid": 297599722158228
 				}
 			],
 			"actions": [],

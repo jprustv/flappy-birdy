@@ -12,6 +12,11 @@
 						"mouse-button": "left",
 						"click-type": "clicked"
 					}
+				},
+				{
+					"id": "on-tap",
+					"objectClass": "Touch",
+					"sid": 312685728443790
 				}
 			],
 			"actions": [
@@ -24,7 +29,8 @@
 					}
 				}
 			],
-			"sid": 810384930804833
+			"sid": 810384930804833,
+			"isOrBlock": true
 		}
 	],
 	"sid": 587469220970071
