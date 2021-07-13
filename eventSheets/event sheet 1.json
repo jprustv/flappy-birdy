@@ -1,0 +1,433 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "pontos",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 886572116528682
+		},
+		{
+			"eventType": "variable",
+			"name": "morreu",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 292400090277661
+		},
+		{
+			"eventType": "variable",
+			"name": "dificuldade",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 248027424462829
+		},
+		{
+			"eventType": "variable",
+			"name": "bonus",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 417120015761992
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 193558401161736
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-all",
+					"objectClass": "Audio",
+					"sid": 903438569927474
+				},
+				{
+					"id": "reset-global-variables",
+					"objectClass": "System",
+					"sid": 895959136763239
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 904352456604476,
+					"parameters": {
+						"audio-file": "fundo",
+						"loop": "looping",
+						"volume": "-25",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 439548423962846
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 174802287526515,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				},
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 591897828429159,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [],
+			"sid": 888967452814023,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 338769288607301,
+							"parameters": {
+								"variable": "morreu"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-vector-y",
+							"objectClass": "jogador",
+							"sid": 334745259394972,
+							"behaviorType": "Platform",
+							"parameters": {
+								"vector-y": "-500"
+							}
+						}
+					],
+					"sid": 652106308092227
+				}
+			],
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 904389815569986,
+					"parameters": {
+						"interval-seconds": "(3.5 - dificuldade)"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 952847147448881,
+					"parameters": {
+						"object-to-create": "cano",
+						"layer": "0",
+						"x": "605",
+						"y": "random(720,1100)",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 505308404949989,
+					"parameters": {
+						"object-to-create": "cano",
+						"layer": "0",
+						"x": "605",
+						"y": "cano.Y-970",
+						"create-hierarchy": false
+					}
+				}
+			],
+			"sid": 188822664102947
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 143098973893736
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 184068606951291,
+					"parameters": {
+						"variable": "morreu"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "cano",
+					"sid": 528344393326300,
+					"parameters": {
+						"x": "Self.X - 300 * dt"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "pontuacao",
+					"sid": 157177948864456,
+					"parameters": {
+						"text": "pontos"
+					}
+				}
+			],
+			"sid": 629665620953811
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-on-screen",
+					"objectClass": "cano",
+					"sid": 335831961044175
+				},
+				{
+					"id": "compare-x",
+					"objectClass": "jogador",
+					"sid": 651021913242953,
+					"parameters": {
+						"comparison": 4,
+						"x-co-ordinate": "cano.X"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 486768594355875
+				}
+			],
+			"actions": [
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 224246608187948,
+					"parameters": {
+						"variable": "pontos",
+						"value": "1 + bonus"
+					}
+				}
+			],
+			"sid": 372951735259223
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-y",
+					"objectClass": "jogador",
+					"sid": 297063818750268,
+					"parameters": {
+						"comparison": 4,
+						"y-co-ordinate": "850"
+					}
+				},
+				{
+					"id": "compare-y",
+					"objectClass": "jogador",
+					"sid": 656138507066564,
+					"parameters": {
+						"comparison": 2,
+						"y-co-ordinate": "0"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 502104844015286,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 957168540533722
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 959465844331726,
+							"parameters": {
+								"variable": "morreu"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 633015423436760,
+							"parameters": {
+								"audio-file": "morte",
+								"loop": "not-looping",
+								"volume": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 122099014675321,
+							"parameters": {
+								"variable": "morreu",
+								"value": "true"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 846236194481377,
+							"parameters": {
+								"seconds": "3"
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 486870484247186,
+							"parameters": {
+								"layout": "menu screen"
+							}
+						}
+					],
+					"sid": 655194141817539
+				}
+			],
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "jogador",
+					"sid": 977463348210245,
+					"parameters": {
+						"object": "cano"
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 902900169968876
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 431904988680208,
+					"parameters": {
+						"variable": "morreu"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 692619695070676,
+					"parameters": {
+						"audio-file": "morte",
+						"loop": "not-looping",
+						"volume": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 390956128323410,
+					"parameters": {
+						"variable": "morreu",
+						"value": "true"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 955984303567310,
+					"parameters": {
+						"seconds": "3"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 242916100267523,
+					"parameters": {
+						"layout": "menu screen"
+					}
+				}
+			],
+			"sid": 691027619292045
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 530535363883427,
+					"parameters": {
+						"interval-seconds": "10"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 629216257628838,
+					"parameters": {
+						"variable": "dificuldade",
+						"value": "dificuldade * 1.1"
+					}
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 660627424616694,
+					"parameters": {
+						"variable": "bonus",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 522922328518897
+		}
+	],
+	"sid": 307857909987405
+}
