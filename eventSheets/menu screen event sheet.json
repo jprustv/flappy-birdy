@@ -2,35 +2,249 @@
 	"name": "menu screen event sheet",
 	"events": [
 		{
+			"eventType": "variable",
+			"name": "showScoreboard",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 413913589293187
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-click",
-					"objectClass": "Mouse",
-					"sid": 243399834710429,
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 425543116617028,
 					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked"
+						"object": "btnscoreboard"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "toggle-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 924593215784981,
+					"parameters": {
+						"variable": "showScoreboard"
+					}
+				}
+			],
+			"sid": 937781523199697,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 479146518958089,
+							"parameters": {
+								"variable": "showScoreboard"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "request-url",
+							"objectClass": "AJAX",
+							"sid": 640865114686950,
+							"parameters": {
+								"tag": "\"get top 10 players - playscreen\"",
+								"url": "\"https://60f08cab8970e90017405ca4.mockapi.io/api/v1/scoreboard?page=1&limit=10&sortBy=score&order=desc\""
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "txtboardnames",
+							"sid": 695867032471420,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "txtboardscores",
+							"sid": 243621113966900,
+							"parameters": {
+								"text": "\"\""
+							}
+						}
+					],
+					"sid": 820811615328312
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 548381330101869
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "menuscoreboard",
+							"sid": 991677693471334,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "bestplayers",
+							"sid": 481997513120761,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "txtboardnames",
+							"sid": 358482168486152,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "txtboardscores",
+							"sid": 393745571061154,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 385539305959445
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 229083282115875,
+					"parameters": {
+						"object": "playClickableRegion"
 					}
 				},
 				{
-					"id": "on-tap",
-					"objectClass": "Touch",
-					"sid": 312685728443790
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 265616661619733,
+					"parameters": {
+						"variable": "showScoreboard"
+					},
+					"isInverted": true
 				}
 			],
 			"actions": [
 				{
 					"id": "go-to-layout",
 					"objectClass": "System",
-					"sid": 288436673087082,
+					"sid": 498145990110978,
 					"parameters": {
 						"layout": "Layout 1"
 					}
 				}
 			],
-			"sid": 810384930804833,
-			"isOrBlock": true
+			"sid": 265304730059328
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 199518476597465,
+					"parameters": {
+						"tag": "\"get top 10 players - playscreen\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "parse",
+					"objectClass": "JSON",
+					"sid": 252124556794552,
+					"parameters": {
+						"data": "AJAX.LastData"
+					}
+				}
+			],
+			"sid": 231699851700941,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "JSON",
+							"sid": 152779363339611,
+							"parameters": {
+								"path": "\"\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "append-text",
+							"objectClass": "txtboardnames",
+							"sid": 253946160087739,
+							"parameters": {
+								"text": "JSON.Get(\".name\") & newline"
+							}
+						},
+						{
+							"id": "append-text",
+							"objectClass": "txtboardscores",
+							"sid": 468146683250372,
+							"parameters": {
+								"text": "JSON.Get(\".score\") & newline"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "menuscoreboard",
+							"sid": 422785849462411,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "bestplayers",
+							"sid": 255910074183585,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "txtboardnames",
+							"sid": 592277857015509,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "txtboardscores",
+							"sid": 256052631914942,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 674969928689203
+				}
+			]
 		}
 	],
 	"sid": 587469220970071

@@ -55,6 +55,30 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "AJAX",
+			"name": "AJAX",
+			"author": "Scirra",
+			"version": "r251.2",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Json",
+			"name": "JSON",
+			"author": "Scirra",
+			"version": "r251.2",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "TextBox",
+			"name": "Text input",
+			"author": "Scirra",
+			"version": "r251.2",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Platform",
 			"name": "Platform",
@@ -76,12 +100,48 @@
 			"Sprite3",
 			"Sprite4",
 			"pontuacao",
-			"Touch"
+			"Touch",
+			"AJAX",
+			"JSON",
+			"menuformulario",
+			"whoareyou",
+			"input_username",
+			"verygood",
+			"btnsalvar",
+			"txtsalvar",
+			"btnscoreboard",
+			"Text",
+			"playClickableRegion",
+			"bestplayers",
+			"menuscoreboard",
+			"txtboardnames",
+			"txtboardscores"
 		],
 		"subfolders": []
 	},
 	"autosaveData": null,
-	"containers": [],
+	"containers": [
+		{
+			"members": [
+				"btnsalvar",
+				"input_username",
+				"menuformulario",
+				"txtsalvar",
+				"verygood",
+				"whoareyou"
+			],
+			"selectMode": "normal"
+		},
+		{
+			"members": [
+				"bestplayers",
+				"menuscoreboard",
+				"txtboardnames",
+				"txtboardscores"
+			],
+			"selectMode": "normal"
+		}
+	],
 	"families": {
 		"items": [],
 		"subfolders": []
@@ -102,7 +162,16 @@
 	},
 	"rootFileFolders": {
 		"script": {
-			"items": [],
+			"items": [
+				{
+					"name": "ajaxHelpers.js",
+					"type": "application/javascript",
+					"sid": 920646166776601,
+					"script-info": {
+						"purpose": "imports-for-events"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"sound": {

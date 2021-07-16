@@ -1,0 +1,57 @@
+{
+	"name": "btnscoreboard",
+	"plugin-id": "Sprite",
+	"sid": 775961018668740,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 317,
+						"height": 143,
+						"originX": 0.501577287066246,
+						"originY": 0.5104895104895105,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 747343,
+						"collisionPoly": {
+							"points": [
+								0.031545741324921134,
+								0,
+								0.501577287066246,
+								0,
+								0.9905362776025236,
+								0,
+								0.9810725552050473,
+								0.5104895104895105,
+								0.7034700315457413,
+								0.958041958041958,
+								0.501577287066246,
+								1,
+								0.01892744479495268,
+								1,
+								0.015772870662460567,
+								0.5104895104895105
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 111435205062071,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

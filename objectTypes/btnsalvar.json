@@ -1,0 +1,57 @@
+{
+	"name": "btnsalvar",
+	"plugin-id": "Sprite",
+	"sid": 883054976896316,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 269,
+						"height": 149,
+						"originX": 0.5910780669144982,
+						"originY": -0.4630872483221478,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 3322717,
+						"collisionPoly": {
+							"points": [
+								0.03717472118959108,
+								0,
+								0.5910780669144982,
+								0,
+								1,
+								0,
+								1,
+								0,
+								0.828996282527881,
+								0,
+								0.5910780669144982,
+								0.9463087248322147,
+								0.022304832713754646,
+								0.5570469798657718,
+								0.01858736059479554,
+								0
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 297328353730459,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

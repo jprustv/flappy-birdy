@@ -42,6 +42,36 @@
 			"sid": 417120015761992
 		},
 		{
+			"eventType": "variable",
+			"name": "salvarClickable",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 158142449574652
+		},
+		{
+			"eventType": "variable",
+			"name": "userBetterThanTop10",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 414232139729411
+		},
+		{
+			"eventType": "variable",
+			"name": "dataPostAjax",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 420669883553726
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -327,6 +357,15 @@
 					],
 					"actions": [
 						{
+							"id": "request-url",
+							"objectClass": "AJAX",
+							"sid": 410883959141278,
+							"parameters": {
+								"tag": "\"get top 10 players\"",
+								"url": "\"https://60f08cab8970e90017405ca4.mockapi.io/api/v1/scoreboard?page=1&limit=10&sortBy=score&order=desc\""
+							}
+						},
+						{
 							"id": "play",
 							"objectClass": "Audio",
 							"sid": 633015423436760,
@@ -344,22 +383,6 @@
 							"parameters": {
 								"variable": "morreu",
 								"value": "true"
-							}
-						},
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 846236194481377,
-							"parameters": {
-								"seconds": "3"
-							}
-						},
-						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 486870484247186,
-							"parameters": {
-								"layout": "menu screen"
 							}
 						}
 					],
@@ -396,6 +419,15 @@
 			],
 			"actions": [
 				{
+					"id": "request-url",
+					"objectClass": "AJAX",
+					"sid": 184162093290327,
+					"parameters": {
+						"tag": "\"get top 10 players\"",
+						"url": "\"https://60f08cab8970e90017405ca4.mockapi.io/api/v1/scoreboard?page=1&limit=10&sortBy=score&order=desc\""
+					}
+				},
+				{
 					"id": "play",
 					"objectClass": "Audio",
 					"sid": 692619695070676,
@@ -413,22 +445,6 @@
 					"parameters": {
 						"variable": "morreu",
 						"value": "true"
-					}
-				},
-				{
-					"id": "wait",
-					"objectClass": "System",
-					"sid": 955984303567310,
-					"parameters": {
-						"seconds": "3"
-					}
-				},
-				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 242916100267523,
-					"parameters": {
-						"layout": "menu screen"
 					}
 				}
 			],
@@ -467,6 +483,241 @@
 				}
 			],
 			"sid": 522922328518897
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 816890310983867,
+					"parameters": {
+						"tag": "\"get top 10 players\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "parse",
+					"objectClass": "JSON",
+					"sid": 790506217013934,
+					"parameters": {
+						"data": "AJAX.LastData"
+					}
+				}
+			],
+			"sid": 531687473560762,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "JSON",
+							"sid": 593849530174735,
+							"parameters": {
+								"path": "\"\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 376196249640578,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 176522257868860,
+									"parameters": {
+										"value": "JSON.Get(\".score\") < pontos"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 383475163844740,
+									"parameters": {
+										"variable": "userBetterThanTop10",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 149668562308478
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 516368561630012,
+							"parameters": {
+								"variable": "userBetterThanTop10"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 227886467011296,
+							"parameters": {
+								"value": "JSON.ArraySize(\"\") < 10"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "menuformulario",
+							"sid": 827205473095163,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "btnsalvar",
+							"sid": 511960673437394,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "input_username",
+							"sid": 413373023170890,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "txtsalvar",
+							"sid": 361481788028115,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "verygood",
+							"sid": 198671869228584,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "whoareyou",
+							"sid": 654347194982991,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 763820461584443,
+							"parameters": {
+								"variable": "salvarClickable",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 293468320190214,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 847431208879402
+						}
+					],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 545894709587641,
+							"parameters": {
+								"seconds": "3"
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 813763348062339,
+							"parameters": {
+								"layout": "menu screen"
+							}
+						}
+					],
+					"sid": 490583739979528
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 809829625639397,
+					"parameters": {
+						"object": "btnsalvar"
+					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 845900748223769,
+					"parameters": {
+						"variable": "salvarClickable"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"script": "formatDataForPostRequest(runtime)"
+				},
+				{
+					"id": "set-request-header",
+					"objectClass": "AJAX",
+					"sid": 596161976205889,
+					"parameters": {
+						"header": "\"Content-Type\"",
+						"value": "\"application/json\""
+					}
+				},
+				{
+					"id": "post-to-url",
+					"objectClass": "AJAX",
+					"sid": 323137520341055,
+					"parameters": {
+						"tag": "\"save user score\"",
+						"url": "\"https://60f08cab8970e90017405ca4.mockapi.io/api/v1/scoreboard\"",
+						"data": "dataPostAjax",
+						"method": "\"POST\""
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 529666202102741,
+					"parameters": {
+						"layout": "menu screen"
+					}
+				}
+			],
+			"sid": 714746404088882
 		}
 	],
 	"sid": 307857909987405
